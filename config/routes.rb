@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   root 'cash_outs#index'
   get "/new", to: redirect("/cash_outs/new")
-  resources :cash_outs, only: [:new, :create]
+  resources :cash_outs, only: [:new, :create, :show, :update]
 
 end

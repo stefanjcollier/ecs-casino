@@ -15,6 +15,12 @@
 
   <body class="bg-light">
       <div class="container my-5">
+        <% flash.each do |type, msg| %>
+          <div class="alert alert-info">
+            <%= msg %>
+          </div>
+        <% end %>
+
         <h1 class="text-center mb-4">
           <%= image_tag("logo.png", width: "50%") %>
         </h1>

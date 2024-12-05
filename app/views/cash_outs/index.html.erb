@@ -9,6 +9,9 @@
                 <th>Cash</th>
                 <th>Dealer Shifts</th>
                 <th>Tickets</th>
+                <% if params[:admin] %>
+                <th>Actions</th>
+                <% end %>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +21,11 @@
               <td>$<%= cash_out.cash %></td>
               <td> <%= cash_out.shifts %>/2</td>
               <td> <%= cash_out.tickets %></td>
+              <% if params[:admin] %>
+              <td>
+                <%= link_to 'Edit', cash_out, class: "btn btn-primary" %>
+              </td>
+              <% end %>
           </tr>
         <% end %>
         </tbody>
