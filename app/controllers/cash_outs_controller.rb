@@ -42,4 +42,11 @@ class CashOutsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @cash_out = CashOut.find(params[:id])
+    @cash_out.destroy
+    flash[:alert] = "Deleted #{@cash_out.name}'s entry"
+    redirect_to root_path, status: :see_other
+  end
 end

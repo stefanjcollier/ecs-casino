@@ -27,6 +27,10 @@
               <% if params[:admin] %>
               <td>
                 <%= link_to 'Edit', cash_out, class: "btn btn-primary" %>
+                <%= link_to 'Delete', cash_out, data: {
+                                    turbo_method: :delete,
+                                    turbo_confirm: "Are you sure?"
+                                  }, class: "btn btn-danger" %>
               </td>
               <% end %>
           </tr>
