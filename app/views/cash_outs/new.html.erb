@@ -1,26 +1,55 @@
-<div class="table-responsive">
-  <%= form_with(model: @cash_out, local: true) do |form| %>
-    <!-- Name Field -->
-    <div class="mb-3">
-      <%= form.label :name, "Name", class: "form-label" %>
-      <%= form.text_field :name, class: "form-control", placeholder: "Enter your name", required: true %>
-    </div>
+<style>
+    .text-outline-white {
+      -webkit-text-stroke: 1px black;
+      color: white;
+    }
+    .text-outline-black {
+      color: black;
+    }
+    .text-outline-red {
+      -webkit-text-stroke: 1px black;
+      color: red;
+    }
+    .text-outline-blue {
+      -webkit-text-stroke: 1px black;
+      color: blue;
+    }
 
-    <!-- Cash Field -->
-    <div class="mb-3">
-      <%= form.label :cash, "Cash", class: "form-label" %>
-      <%= form.number_field :cash, class: "form-control", placeholder: "Enter cash amount", step: "0.01", required: true %>
-    </div>
+</style>
+<div class="row">
+  <div class="col-3">
+    <h1>Chip Guide</h1>
+    <p><span class="text-outline-black display-6">Black</span> = $10</p>
+    <p><span class="text-outline-white display-6">White</span> = $20</p>
+    <p><span class="text-outline-blue display-6">Blue</span> = $50</p>
+    <p><span class="text-outline-red display-6">Red</span> = $100</p>
+  </div>
+  <div class="col-9 table-responsive">
+    <h1>Submit Cash Out Form</h1>
+    <%= form_with(model: @cash_out, local: true) do |form| %>
+      <!-- Name Field -->
+      <div class="mb-3">
+        <%= form.label :name, "Name", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Enter your name", required: true %>
+      </div>
 
-    <!-- Shifts Field -->
-    <div class="mb-3">
-      <%= form.label :shifts, "Shifts", class: "form-label" %>
-      <%= form.number_field :shifts, class: "form-control", value: 0, max: 2, required: true %>
-    </div>
+      <!-- Cash Field -->
+      <div class="mb-3">
+        <%= form.label :cash, "Cash", class: "form-label" %>
+        <%= form.number_field :cash, class: "form-control", placeholder: "Enter cash amount", step: "0.01", required: true %>
+      </div>
 
-    <!-- Submit Button -->
-    <div class="d-grid">
-      <%= form.submit "Submit", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+      <!-- Shifts Field -->
+      <div class="mb-3">
+        <%= form.label :shifts, "Shifts", class: "form-label" %>
+        <%= form.number_field :shifts, class: "form-control", value: 0, max: 2, required: true %>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid">
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
