@@ -1,0 +1,52 @@
+<h1>Dynamic Table</h1>
+<button id="addEntryButton">Add Entry</button>
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Cash</th>
+            <th>Tickets</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be added dynamically here -->
+    </tbody>
+</table>
+
+<script>
+    const addEntryButton = document.getElementById('addEntryButton');
+    const tableBody = document.querySelector('#dataTable tbody');
+
+    addEntryButton.addEventListener('click', () => {
+        // Prompt user for input
+        const name = prompt("Enter name:");
+        const cash = prompt("Enter cash:");
+        const tickets = prompt("Enter tickets:");
+
+        // Validate inputs
+        if (name && cash && tickets) {
+            // Create a new row
+            const newRow = document.createElement('tr');
+
+            // Create cells
+            const nameCell = document.createElement('td');
+            const cashCell = document.createElement('td');
+            const ticketsCell = document.createElement('td');
+
+            // Fill cells with data
+            nameCell.textContent = name;
+            cashCell.textContent = cash;
+            ticketsCell.textContent = tickets;
+
+            // Append cells to row
+            newRow.appendChild(nameCell);
+            newRow.appendChild(cashCell);
+            newRow.appendChild(ticketsCell);
+
+            // Append row to table body
+            tableBody.appendChild(newRow);
+        } else {
+            alert("All fields are required!");
+        }
+    });
+</script>
