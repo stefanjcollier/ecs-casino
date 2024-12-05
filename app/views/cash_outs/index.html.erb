@@ -7,11 +7,19 @@
             <tr>
                 <th>Name</th>
                 <th>Cash</th>
+                <th>Dealer Shifts</th>
                 <th>Tickets</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Rows will be added dynamically here -->
+        <% @cash_outs.each do |cash_out| %>
+          <tr>
+              <td> <%= cash_out.name %></td>
+              <td>$<%= cash_out.cash %></td>
+              <td> <%= cash_out.shifts %>/2</td>
+              <td> <%= cash_out.tickets %></td>
+          </tr>
+        <% end %>
         </tbody>
     </table>
 </div>

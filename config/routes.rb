@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root 'welcome#index'
-  get "/new", to: "welcome#new"
+  root 'cash_outs#index'
+  get "/new", to: redirect("/cash_outs/new")
+  resources :cash_outs, only: [:new, :create]
 
 end
