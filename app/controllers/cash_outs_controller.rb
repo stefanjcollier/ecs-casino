@@ -3,6 +3,7 @@ class CashOutsController < ApplicationController
 
   def index
     @cash_outs = CashOut.all.order(tickets: :desc)
+    @winners_found = @cash_outs.any?(&:winner?)
   end
 
   def new

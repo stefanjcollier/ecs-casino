@@ -35,13 +35,17 @@
 </style>
 
 <div class="falling-chips"></div>
-
 <div class="d-flex justify-content-end mb-3">
   <%= link_to '🤑 CASH OUT 🤑', new_cash_out_path, class: "btn btn-success mx-2" %>
-  <% if params[:admin] %>
-  <%= link_to '🏆 Find Winner 🏆', winners_path, class: "btn btn-warning" %>
+  <% if @winners_found %>
+  <%= link_to '🏆 See Winners 🏆', winners_path, class: "btn btn-warning" %>
   <% end %>
 </div>
+<% if params[:admin] %>
+  <div class="d-flex justify-content-end mb-3">
+    <%= link_to 'Determine Winner', new_winner_path, class: "btn btn-danger" %>
+  </div>
+<% end %>
 
 <div class="table-responsive">
     <table id="dataTable" class="table table-striped table-bordered">
@@ -84,7 +88,7 @@
           const chip = document.createElement('div');
           chip.classList.add('chip');
           chip.style.backgroundColor = chipColors[Math.floor(Math.random() * chipColors.length)];
-          chip.style.width = chip.style.height = `${Math.random() * 40 + 30}px`;
+          chip.style.width = chip.style.height = `${Math.random() * 20 + 15}px`;
           chip.style.top = `-${Math.random() * 20}vh`;
           chip.style.left = `${Math.random() * 100}vw`;
           chip.style.animation = `fall ${Math.random() * 5 + 3}s linear infinite`;

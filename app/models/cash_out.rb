@@ -3,4 +3,8 @@ class CashOut < ApplicationRecord
   validates :cash, presence: true
   validates :shifts, presence: true
   validates :tickets, presence: true
+
+  def winner?
+    position.present?
+  end
 end
