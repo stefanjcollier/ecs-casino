@@ -1,0 +1,17 @@
+<div class="table-responsive">
+  <%= form_with(model: @record, local: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, "Name", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Enter your name", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :cash, "Cash", class: "form-label" %>
+      <%= form.number_field :cash, class: "form-control", placeholder: "Enter cash amount", step: "0.01", required: true %>
+    </div>
+
+    <div class="d-grid">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
