@@ -1,9 +1,48 @@
+<style>
+.falling-chips {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Place chips behind all other content */
+}
+.chip {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.5;
+}
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+@keyframes pop {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+</style>
+
+<div class="falling-chips"></div>
+
 <div class="d-flex justify-content-end mb-3">
   <%= link_to '🤑 CASH OUT 🤑', new_cash_out_path, class: "btn btn-success mx-2" %>
   <% if params[:admin] %>
   <%= link_to '🏆 Find Winner 🏆', winners_path, class: "btn btn-warning" %>
   <% end %>
 </div>
+
 <div class="table-responsive">
     <table id="dataTable" class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -35,4 +74,35 @@
         <% end %>
         </tbody>
     </table>
+
+  <script>
+      const chipsContainer = document.querySelector('.falling-chips');
+      const chipColors = ['#FF5733', '#FFC300', '#28B463', '#5DADE2', 'black'];
+
+      // Create poker chips
+      for (let i = 0; i < 50; i++) {
+          const chip = document.createElement('div');
+          chip.classList.add('chip');
+          chip.style.backgroundColor = chipColors[Math.floor(Math.random() * chipColors.length)];
+          chip.style.width = chip.style.height = `${Math.random() * 40 + 30}px`;
+          chip.style.top = `-${Math.random() * 20}vh`;
+          chip.style.left = `${Math.random() * 100}vw`;
+          chip.style.animation = `fall ${Math.random() * 5 + 3}s linear infinite`;
+
+          // Add text to the chip
+          chip.textContent = "$";
+
+          chipsContainer.appendChild(chip);
+      }
+
+      // Add animation styles for falling
+      const style = document.createElement('style');
+      style.textContent = `
+          .chip {
+              animation: fall 5s linear infinite;
+          }
+      `;
+      document.head.appendChild(style);
+  </script>
+
 </div>
