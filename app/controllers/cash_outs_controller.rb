@@ -17,7 +17,8 @@ class CashOutsController < ApplicationController
   def update
     @cash_out = CashOut.find(params[:id])
     @cash_out.assign_attributes(params.require(:cash_out).permit(*%i[name cash shifts]))
-    @cash_out.tickets = (@cash_out.cash + @cash_out.shifts * 200) / 10
+    @cash_out.cash += @cash_out.shifts * 200
+    @cash_out.tickets = @cash_out.cash / 10
 
     if @cash_out.valid?
       @cash_out.save!
@@ -31,7 +32,8 @@ class CashOutsController < ApplicationController
 
   def create
     @cash_out = CashOut.new(params.require(:cash_out).permit(*%i[name cash shifts]))
-    @cash_out.tickets = (@cash_out.cash + @cash_out.shifts * 200) / 10
+    @cash_out.cash += @cash_out.shifts * 200
+    @cash_out.tickets = @cash_out.cash / 10
 
     if @cash_out.valid?
       @cash_out.save!
