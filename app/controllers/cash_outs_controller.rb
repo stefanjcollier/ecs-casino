@@ -2,7 +2,10 @@ class CashOutsController < ApplicationController
   helper_method :params
 
   def index
-    @cash_outs = CashOut.all.order(tickets: :desc)
+    @cash_outs = CashOut
+                   .all
+                   .select('*, 100 * CAST(tickets AS decimal) / SUM(tickets) OVER() AS odds')
+                   .order(tickets: :desc)
     @winners_found = @cash_outs.any?(&:winner?)
   end
 

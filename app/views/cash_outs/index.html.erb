@@ -55,6 +55,7 @@
                 <th>Cash</th>
                 <th>Dealer Shifts</th>
                 <th>Tickets</th>
+                <th>Winning Odds</th>
                 <% if params[:admin] %>
                 <th>Actions</th>
                 <% end %>
@@ -67,6 +68,7 @@
               <td>$<%= cash_out.cash %></td>
               <td> <%= cash_out.shifts %>/2</td>
               <td> <%= cash_out.tickets %></td>
+              <td> <%= number_with_precision cash_out.odds, :precision => 3 %>%</td>
               <% if params[:admin] %>
               <td>
                 <%= link_to 'Edit', cash_out, class: "btn btn-primary" %>
